@@ -8,6 +8,7 @@
   --accent: #55d6be;
   --accent-strong: #38b99f;
   --muted: #9babb7;
+  --disabled-foreground: #b8c5ce;
 }
 
 @theme inline {
@@ -21,6 +22,12 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-localsettle), Arial, Helvetica, sans-serif;
+}
+
+button:disabled,
+button:disabled * {
+  color: var(--disabled-foreground) !important;
+  opacity: 1 !important;
 }
 
 @keyframes toast-enter {
@@ -46,5 +53,22 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+:where(a[href], button, input, select, textarea, [role="button"], [role="tab"], [role="menuitem"], [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+[role="tab"][aria-selected="true"] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35em;
+}
+
+@media (forced-colors: active) {
+  :where(a[href], button, input, select, textarea, [role="button"], [role="tab"], [role="menuitem"], [tabindex]):focus-visible {
+    outline-color: Highlight;
   }
 }
